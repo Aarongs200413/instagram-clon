@@ -42,7 +42,7 @@
                     </a>
                 </form>
                 <div class="text-center w-100" style="max-width: 360px;">
-                     <a href="#" style="text-decoration:none; color:#00376b; font-size: 14px;">¿Has olvidado tu contraseña?</a>
+                     <a href="{{ route('password.request') }}" style="text-decoration:none; color:#00376b; font-size: 14px;">¿Has olvidado tu contraseña?</a>
                 </div>
                 @if (session('error'))
                     <div class="alert alert-danger mt-2">

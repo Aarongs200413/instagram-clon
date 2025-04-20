@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ReelController;
+use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
@@ -60,3 +60,11 @@ Route::middleware('auth')->get('/mensajes/{id}', [MessageController::class, 'cha
 Route::middleware('auth')->post('/messages/send', [MessageController::class, 'store'])->name('messages.send');
 Route::get('/state/{id}', [StateController::class, 'show'])->name('state.show');
 Route::post('/user/update-profile-picture', [UserController::class, 'updateProfilePicture'])->name('user.updateProfilePicture');
+
+//Ruta para recuperar contraseña
+Route::get('/password/reset', [PasswordResetController::class, 'showRequestForm'])->name('password.request');
+Route::post('/password/email', [PasswordResetController::class, 'sendResetLink'])->name('password.email');
+
+//Ruta para dar el token para recuperar
+Route::get('/password/reset/{token}', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
+Route::post('/password/reset', [PasswordResetController::class, 'reset'])->name('password.update');
