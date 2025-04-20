@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -82,8 +83,8 @@ class UserController extends Controller
         // Subir la nueva imagen de perfil
         if ($request->hasFile('profile_picture')) {
             // Eliminar la imagen anterior si existe
-            if ($user->profile_picture && Storage::exists('public/' . $user->profile_picture)) {
-                Storage::delete('public/' . $user->profile_picture);
+            if ($user->profile_picture && Storage::disk('public')->exists($user->profile_picture)) {
+                Storage::disk('public')->delete($user->profile_picture);
             }
 
             // Subir la nueva imagen
